@@ -1,0 +1,60 @@
+- name: "Create Wildfly service directory in etc"
+  file:
+    path: "/etc/{{ wildfly_service_name }}"
+    state: directory
+
+- name: "Copy Wildfly configuration file to etc"
+  copy:
+    src: "{{ wildfly_dest_dir }}/docs/contrib/scripts/systemd/wildfly.conf"
+    dest: "/etc/{{ wildfly_service_name }}/wildfly.conf"
+    remote_src: yes
+    owner: "root"
+    group: "root"
+
+- name: "Copy Wildfly service file to systemd system directory"
+  copy:
+    src: "{{ wildfly_dest_dir }}/docs/contrib/scripts/systemd/wildfly.service"
+    dest: "{{ wildfly_service_file }}"
+    remote_src: yes
+    owner: "root"
+    group: "root"
+
+- name: "Set environment file property in Wildfly service file"
+  lineinfile:
+    path: "{{ wildfly_service_file }}"
+    regexp: "^EnvironmentFile="
+    line: "EnvironmentFile=-/etc/{{ wildfly_service_name }}/wildfly.conf"
+
+- name: "Set user property in Wildfly service file"
+  lineinfile:
+    path: "{{ wildfly_service_file }}"
+    regexp: "^User="
+    line: "User={{ wildfly_user }}"
+
+- name: "Set pid file property in Wildfly service file"
+  lineinfile:
+    path: "{{ wildfly_service_file }}"
+    regexp: "^PIDFile="
+    line: "PIDFile=/var/run/{{ wildfly_service_name }}/wildfly.pid"
+
+- name: "Set exec. start file property in Wildfly service file"
+  lineinfile:
+    path: "{{ wildfly_service_file }}"
+    regexp: "^ExecStart="
+    line: "ExecStart={{ wildfly_dest_dir }}/bin/launch.sh $WILDFLY_MODE $WILDFLY_CONFIG $WILDFLY_BIND"
+
+- name: "Copy Wildfly launch script"
+  copy:
+    src: "{{ wildfly_dest_dir }}/docs/contrib/scripts/systemd/launch.sh"
+    dest: "{{ wildfly_dest_dir }}/bin"
+    remote_src: yes
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
+    mode: '0700'
+
+- name: "Enable and start Wildfly service"
+  systemd:
+    name: "{{ wildfly_service_name }}"
+    enabled: yes
+    state: started
+    daemon_reload: yes

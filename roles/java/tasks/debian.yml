@@ -1,0 +1,5 @@
+- name: "Install JDK"
+  apt:
+    name: "{{ debian_jdk_package_name }}"
+    update_cache: "{{ debian_update_package_cache }}"
+    state: present

@@ -1,0 +1,26 @@
+- name: "Create user for Wildfly"
+  user:
+    name: "{{ wildfly_user }}"
+
+- name: "Create group for Wildfly"
+  group:
+    name: "{{ wildfly_group }}"
+
+- name: "Create directory for Wildfly"
+  file:
+    path: "{{ wildfly_dest_dir }}"
+    state: directory
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
+
+- name: "Download and unpack Wildfly"
+  unarchive:
+    src: "{{ wildfly_url }}"
+    dest: "{{ wildfly_dest_dir }}"
+    remote_src: yes
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
+    extra_opts: [--strip-components=1]
+
+- import_tasks: service.yml
+  when: wildfy_create_service|default(false)|bool == true

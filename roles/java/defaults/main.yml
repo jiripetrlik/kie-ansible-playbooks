@@ -1,0 +1,2 @@
+debian_jdk_package_name: openjdk-11-jdk
+debian_update_package_cache: yes
