@@ -1,0 +1,6 @@
+- name: Download Kie Server war
+  get_url:
+    url: "{{ kie_server_url }}"
+    dest: "{{ wildfly_dest_dir }}/standalone/deployments/{{ kie_server_app_name }}.war"
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"

@@ -1,6 +1,8 @@
+wildfly_config_file: "standalone-full.xml"
 wildfy_create_service: yes
 wildfly_dest_dir: "/opt/wildfly"
 wildfly_group: "wildfly"
+wildfly_environment_file: "/etc/{{ wildfly_service_name }}/wildfly.conf"
 wildfly_service_file: "/etc/systemd/system/{{ wildfly_service_name }}.service"
 wildfly_service_name: "wildfly"
 wildfly_url: "https://download.jboss.org/wildfly/14.0.1.Final/wildfly-14.0.1.Final.tar.gz"

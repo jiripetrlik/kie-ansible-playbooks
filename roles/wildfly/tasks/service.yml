@@ -6,10 +6,16 @@
 - name: "Copy Wildfly configuration file to etc"
   copy:
     src: "{{ wildfly_dest_dir }}/docs/contrib/scripts/systemd/wildfly.conf"
-    dest: "/etc/{{ wildfly_service_name }}/wildfly.conf"
+    dest: "{{ wildfly_environment_file }}"
     remote_src: yes
     owner: "root"
     group: "root"
+
+- name: "Set Wildfly config file"
+  lineinfile:
+    path: "{{ wildfly_environment_file }}"
+    regexp: "^WILDFLY_CONFIG="
+    line: "WILDFLY_CONFIG={{ wildfly_config_file }}"
 
 - name: "Copy Wildfly service file to systemd system directory"
   copy:
