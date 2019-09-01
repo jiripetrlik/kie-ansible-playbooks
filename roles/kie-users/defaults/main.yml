@@ -1,0 +1,3 @@
+wildfly_create_testing_users: yes
+wildlfy_users_file: "{{ wildfly_dest_dir }}/standalone/configuration/application-users.properties"
+wildlfy_roles_file: "{{ wildfly_dest_dir }}/standalone/configuration/application-roles.properties"

@@ -1,0 +1,23 @@
+- name: "Create kieadmin user with password test"
+  lineinfile:
+    path: "{{ wildlfy_users_file }}"
+    regexp: "^kieadmin="
+    line: "kieadmin=0a5c5e4d7023e4469ab0cb5c1a272723"
+
+- name: "Assign roles to kieadmin user"
+  lineinfile:
+    path: "{{ wildlfy_roles_file }}"
+    regexp: "^kieadmin="
+    line: "kieadmin=admin,analyst,user,process-admin,kie-server"
+
+- name: "Create kie server user with password test"
+  lineinfile:
+    path: "{{ wildlfy_users_file }}"
+    regexp: "^kieserver="
+    line: "kieserver=f1faccfc9ec8bb94eb90802d46bb4153"    
+
+- name: "Assign roles to kieserver user"
+  lineinfile:
+    path: "{{ wildlfy_roles_file }}"
+    regexp: "^kieserver="
+    line: "kieserver=kie-server"

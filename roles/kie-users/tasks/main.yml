@@ -1,0 +1,2 @@
+- import_tasks: testing-users.yml
+  when: wildfly_create_testing_users|default(false)|bool == true
