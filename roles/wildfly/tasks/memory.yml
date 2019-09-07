@@ -1,0 +1,23 @@
+- name: "Set Wildfly initial memory allocation pool"
+  replace:
+    path: "{{ wildfly_bootstrap_script }}"
+    regexp: "-Xms[0-9]+[a-zA-Z]"
+    replace: "-Xms{{ wildfly_xms }}"
+
+- name: "Set Wildfly maximal memory allocation pool"
+  replace:
+    path: "{{ wildfly_bootstrap_script }}"
+    regexp: "-Xmx[0-9]+[a-zA-Z]"
+    replace: "-Xmx{{ wildfly_xmx }}"
+
+- name: "Set Wildfly metaspace"
+  replace:
+    path: "{{ wildfly_bootstrap_script }}"
+    regexp: "-XX:MetaspaceSize=[0-9]+[a-zA-Z]"
+    replace: "-XX:MetaspaceSize={{ wildfly_metaspace }}"
+
+- name: "Set Wildfly maximal metaspace"
+  replace:
+    path: "{{ wildfly_bootstrap_script }}"
+    regexp: "-XX:MaxMetaspaceSize=[0-9]+[a-zA-Z]"
+    replace: "-XX:MaxMetaspaceSize={{ wildfly_metaspace_max }}"

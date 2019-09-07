@@ -1,0 +1,6 @@
+- name: Download business central war
+  get_url:
+    url: "{{ business_central_url }}"
+    dest: "{{ wildfly_dest_dir }}/standalone/deployments/{{ business_central_app_name }}.war"
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
