@@ -1,0 +1,12 @@
+- name: "Install tar"
+  dnf:
+    name: "{{ redhat_tar_package_name }}"
+    update_cache: "{{ redhat_update_package_cache }}"
+    state: present
+
+- name: "Enable Wildfly port in firewalld"
+  firewalld:
+    port: 8080/tcp
+    immediate: yes
+    permanent: yes
+    state: enabled

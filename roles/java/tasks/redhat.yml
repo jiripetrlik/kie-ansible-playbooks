@@ -1,0 +1,5 @@
+- name: "Install JDK"
+  dnf:
+    name: "{{ redhat_jdk_package_name }}"
+    update_cache: "{{ redhat_update_package_cache }}"
+    state: present

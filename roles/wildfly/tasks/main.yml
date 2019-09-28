@@ -1,3 +1,6 @@
+- import_tasks: redhat.yml
+  when: ansible_facts['os_family'] == 'RedHat'
+
 - name: "Create user for Wildfly"
   user:
     name: "{{ wildfly_user }}"

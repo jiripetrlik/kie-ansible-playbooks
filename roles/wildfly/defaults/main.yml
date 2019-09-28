@@ -1,3 +1,6 @@
+redhat_tar_package_name: tar
+redhat_update_package_cache: yes
+
 wildfly_bootstrap_script: "{{ wildfly_dest_dir }}/bin/standalone.conf"
 wildfly_config_file: "standalone-full.xml"
 wildfy_create_service: yes
