@@ -1,3 +1,3 @@
 kie_server_app_name: "kie-server"
 kie_server_url: "http://repository.jboss.org/org/kie/server/kie-server/{{ kie_server_version }}/kie-server-{{ kie_server_version }}-ee8.war"
-kie_server_version: "7.25.0.Final"
+kie_server_version: "7.34.0.Final"
