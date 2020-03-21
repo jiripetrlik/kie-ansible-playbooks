@@ -8,6 +8,7 @@
     src: "{{ wildfly_dest_dir }}/docs/contrib/scripts/systemd/wildfly.conf"
     dest: "{{ wildfly_environment_file }}"
     remote_src: yes
+    force: no
     owner: "root"
     group: "root"
 
@@ -22,6 +23,7 @@
     src: "{{ wildfly_dest_dir }}/docs/contrib/scripts/systemd/wildfly.service"
     dest: "{{ wildfly_service_file }}"
     remote_src: yes
+    force: no
     owner: "root"
     group: "root"
 

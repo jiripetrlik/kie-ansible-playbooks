@@ -16,6 +16,11 @@
     owner: "{{ wildfly_user }}"
     group: "{{ wildfly_group }}"
 
+- name: "Check if Wildfly folder is empty"
+  find:
+    path: "{{ wildfly_dest_dir }}"
+  register: filesInWildflyDirFound
+
 - name: "Download and unpack Wildfly"
   unarchive:
     src: "{{ wildfly_url }}"
@@ -24,6 +29,7 @@
     owner: "{{ wildfly_user }}"
     group: "{{ wildfly_group }}"
     extra_opts: [--strip-components=1]
+  when: filesInWildflyDirFound.matched == 0
 
 - import_tasks: memory.yml
   when: wildfly_modify_memory_settings|default(false)|bool == true
