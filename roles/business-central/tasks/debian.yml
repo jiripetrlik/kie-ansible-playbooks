@@ -1,0 +1,5 @@
+- name: "Install Python lxml library"
+  apt:
+    name: "{{ debian_lxml_package_name }}"
+    update_cache: "{{ debian_update_package_cache }}"
+    state: present

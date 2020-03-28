@@ -10,11 +10,11 @@
     regexp: "^kieadmin="
     line: "kieadmin=admin,analyst,user,process-admin,kie-server"
 
-- name: "Create kie server user with password test"
+- name: "Create kie server user with password kieserver1!"
   lineinfile:
     path: "{{ wildlfy_users_file }}"
     regexp: "^kieserver="
-    line: "kieserver=f1faccfc9ec8bb94eb90802d46bb4153"    
+    line: "kieserver=16c6511893651c9b4b57e0c027a96075"
 
 - name: "Assign roles to kieserver user"
   lineinfile:

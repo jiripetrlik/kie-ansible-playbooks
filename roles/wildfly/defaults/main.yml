@@ -3,6 +3,7 @@ redhat_update_package_cache: yes
 
 wildfly_bootstrap_script: "{{ wildfly_dest_dir }}/bin/standalone.conf"
 wildfly_config_file: "standalone-full.xml"
+wildfly_config_file_path: "{{ wildfly_dest_dir }}/standalone/configuration/{{ wildfly_config_file }}"
 wildfy_create_service: yes
 wildfly_dest_dir: "/opt/wildfly"
 wildfly_environment_file: "/etc/{{ wildfly_service_name }}/wildfly.conf"
