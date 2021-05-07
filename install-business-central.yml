@@ -1,6 +1,6 @@
 ---
 - hosts: business_central
-  user: root
+  become: yes
   roles:
     - java
     - wildfly

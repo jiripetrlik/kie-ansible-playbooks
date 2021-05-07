@@ -1,6 +1,6 @@
 ---
 - hosts: kie_server
-  user: root
+  become: yes
   roles:
     - java
     - wildfly
