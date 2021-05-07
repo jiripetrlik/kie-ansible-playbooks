@@ -1,5 +1,5 @@
 business_central_app_name: "business-central"
 business_central_url: "http://repository.jboss.org/org/kie/business-central/{{ business_central_version }}/business-central-{{ business_central_version }}-wildfly14.war"
 business_central_version: "7.34.0.Final"
-debian_lxml_package_name: "python-lxml"
+debian_lxml_package_name: "python3-lxml"
 debian_update_package_cache: "yes"
