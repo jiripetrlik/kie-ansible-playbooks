@@ -6,7 +6,7 @@
     path: "{{ wildfly_config_file_path }}"
     xpath: "/jd:server/jd:system-properties"
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
     count: yes
   register: system_properties_hits
 - name: "Add system-properties element to Wildfly config file"
@@ -16,7 +16,7 @@
     insertafter: yes
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
     add_children:
     - "system-properties"
   when: system_properties_hits.count == 0
@@ -26,7 +26,7 @@
     xpath: "/jd:server/jd:system-properties/jd:property[@name='org.kie.server.location' and @value='{{ kie_server_location }}']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
   when: kie_server_location is defined
 - name: "Add kie-server user system property"
   xml:
@@ -34,7 +34,7 @@
     xpath: "/jd:server/jd:system-properties/jd:property[@name='org.kie.server.user' and @value='{{ kie_server_service_user }}']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
   when: kie_server_service_user is defined
 - name: "Add kie-server password system property"
   xml:
@@ -42,7 +42,7 @@
     xpath: "/jd:server/jd:system-properties/jd:property[@name='org.kie.server.pwd' and @value='{{ kie_server_service_password }}']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
   when: kie_server_service_password is defined
 
 - name: "Add kie login module to security subsystem"
@@ -51,7 +51,7 @@
     xpath: "/jd:server/jd:profile/js:subsystem/js:security-domains/js:security-domain[@name='other']/js:authentication/js:login-module[@code='org.kie.security.jaas.KieLoginModule' and @flag='optional' and @module='deployment.business-central.war']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
       js: "urn:jboss:domain:security:2.0"
 - name: "Restart Wildfly service"
   service:

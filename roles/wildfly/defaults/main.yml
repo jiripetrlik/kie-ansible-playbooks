@@ -13,7 +13,7 @@ wildfly_metaspace_max: "8G"
 wildfly_modify_memory_settings: yes
 wildfly_service_file: "/etc/systemd/system/{{ wildfly_service_name }}.service"
 wildfly_service_name: "wildfly"
-wildfly_url: "https://download.jboss.org/wildfly/14.0.1.Final/wildfly-14.0.1.Final.tar.gz"
+wildfly_url: "https://download.jboss.org/wildfly/19.1.0.Final/wildfly-19.1.0.Final.tar.gz"
 wildfly_user: "wildfly"
 wildfly_xms: "256m"
 wildfly_xmx: "2048m"

@@ -6,7 +6,7 @@
     path: "{{ wildfly_config_file_path }}"
     xpath: "/jd:server/jd:system-properties"
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
     count: yes
   register: system_properties_hits
 - name: "Add system-properties element to Wildfly config file"
@@ -16,7 +16,7 @@
     insertafter: yes
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
     add_children:
     - "system-properties"
   when: system_properties_hits.count == 0
@@ -26,7 +26,7 @@
     xpath: "/jd:server/jd:system-properties/jd:property[@name='org.kie.server.id' and @value='{{ kie_server_id }}']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
   when: kie_server_id is defined
 - name: "Add kie-server controller system property"
   xml:
@@ -34,7 +34,7 @@
     xpath: "/jd:server/jd:system-properties/jd:property[@name='org.kie.server.controller' and @value='{{ kie_server_controller }}']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
   when: kie_server_controller is defined
 - name: "Add kie-server controller user system property"
   xml:
@@ -42,7 +42,7 @@
     xpath: "/jd:server/jd:system-properties/jd:property[@name='org.kie.server.controller.user' and @value='{{ kie_server_controller_service_user }}']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
   when: kie_server_controller_service_user is defined
 - name: "Add kie-server controller password system property"
   xml:
@@ -50,7 +50,7 @@
     xpath: "/jd:server/jd:system-properties/jd:property[@name='org.kie.server.controller.pwd' and @value='{{ kie_server_controller_service_password }}']"
     pretty_print: yes
     namespaces:
-      jd: "urn:jboss:domain:8.0"
+      jd: "urn:jboss:domain:12.0"
   when: kie_server_controller_service_password is defined
 - name: "Restart Wildfly service"
   service:
