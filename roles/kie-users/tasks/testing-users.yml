@@ -20,4 +20,4 @@
   lineinfile:
     path: "{{ wildlfy_roles_file }}"
     regexp: "^kieserver="
-    line: "kieserver=kie-server"
+    line: "kieserver=kie-server,rest-all"
