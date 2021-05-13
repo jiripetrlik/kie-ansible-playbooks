@@ -3,6 +3,12 @@
 - import_tasks: redhat.yml
   when: ansible_facts['os_family'] == 'RedHat'
 
+- name: "Stop Wildfly service"
+  service:
+    name: "{{ wildfly_service_name }}"
+    state: "stopped"
+  when: wildfly_service_name is defined
+
 - name: "Check that system-properties element exists in Wildfly config file"
   xml:
     path: "{{ wildfly_config_file_path }}"
@@ -54,11 +60,6 @@
     namespaces:
       jd: "urn:jboss:domain:12.0"
   when: kie_server_controller_service_password is defined
-- name: "Restart Wildfly service"
-  service:
-    name: "{{ wildfly_service_name }}"
-    state: "restarted"
-  when: wildfly_service_name is defined
 
 - name: Download Kie Server war
   get_url:
@@ -66,3 +67,9 @@
     dest: "{{ wildfly_dest_dir }}/standalone/deployments/{{ kie_server_app_name }}.war"
     owner: "{{ wildfly_user }}"
     group: "{{ wildfly_group }}"
+
+- name: "Start Wildfly service"
+  service:
+    name: "{{ wildfly_service_name }}"
+    state: "started"
+  when: wildfly_service_name is defined
