@@ -4,3 +4,5 @@ business_central_version: "7.53.0.Final"
 business_central_wildfly_major_version: "19"
 debian_lxml_package_name: "python3-lxml"
 debian_update_package_cache: "yes"
+redhat_lxml_package_name: "python3-lxml"
+redhat_update_package_cache: yes
